@@ -16,16 +16,19 @@ function App() {
 
   const getToken = async () => {
     try {
-      const tokenResponse = await fetch("/api/operate/auth/login?ocode=quick", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: "admin",
-          password: "111111",
-        }),
-      });
+      const tokenResponse = await fetch(
+        "https://api.w-dian.cn/operate/auth/login?ocode=quick",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: "admin",
+            password: "111111",
+          }),
+        }
+      );
 
       const tokenData = await tokenResponse.json();
       console.log("Token response:", tokenData);
@@ -66,15 +69,18 @@ function App() {
 
       console.log("Отправка запроса:", requestBody);
 
-      const res = await fetch("/api/operate/equipment/operate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          token: currentToken,
-          ocode: "quick",
-        },
-        body: JSON.stringify(requestBody),
-      });
+      const res = await fetch(
+        "https://api.w-dian.cn/operate/equipment/operate",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            token: currentToken,
+            ocode: "quick",
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
 
       const data = await res.json();
       console.log("Ответ:", data);
